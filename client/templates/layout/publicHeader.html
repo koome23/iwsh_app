@@ -1,0 +1,119 @@
+<template name="publicHeader">
+<ul id="dropdown-policies" class="nav-dropdown dropdown-content">
+  <li style="position:relative;">
+    <div style="padding:20px 200px" class="row">
+      <div class="col s3">
+        <ul class="submenu-level-1">
+          <li>
+            <a href="/policies/cloud-access-rules"><i class="sprites icon001"></i>Cloud Access Rules</a>
+          </li>
+          <li>
+            <a href="#"><i class="sprites icon002"></i>FTP Control</a>
+          </li>
+          <li>
+            <a href="#"><i class="sprites icon003"></i>Bandwidth Control</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col s3">
+        <ul class="submenu-level-1">
+          <li>
+            <a href="#"><i class="sprites icon004"></i>SSL Inspection</a>
+          </li>
+        </ul>
+        <ul class="submenu-level-2">
+          <li>
+            <a href="#">HTTPS Decryption</a>
+          </li>
+          <li>
+            <a href="#" style="margin-left: 20px;">Root CA Management</a>
+          </li>
+          <li>
+            <a href="#">Digital Certificate Management</a>
+          </li>
+          <li>
+            <a href="#">Certificate Validation</a>
+          </li>
+          <li>
+            <a href="#">Failed HTTPS Access</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col s3">
+        <ul class="submenu-level-1">
+          <li>
+            <a href="#"><i class="sprites icon005"></i>Security Templates</a>
+          </li>
+        </ul>
+        <ul class="submenu-level-2">
+          <li>
+            <a href="#">Advanced Threat Protection</a>
+          </li>
+          <li>
+            <a href="#">Data Loss Prevention</a>
+          </li>
+          <li>
+            <a href="#" style="margin-left: 20px;">Digital Assets</a>
+          </li>
+        </ul>
+      </div>
+      <div class="col s3">
+        <ul class="submenu-level-1">
+          <li>
+            <a href="#"><i class="sprites icon006"></i>Objects</a>
+          </li>
+        </ul>
+        <ul class="submenu-level-2">
+          <li>
+            <a href="#">Custom Category</a>
+          </li>
+          <li>
+            <a href="#">Addresses</a>
+          </li>
+          <li>
+            <a href="#">Schedules</a>
+          </li>
+        </ul>
+        <ul class="submenu-level-1">
+          <li>
+            <a href="#"><i class="sprites icon007"></i>Approved / Blocked List</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<nav>
+  <div class="nav-wrapper">
+    <a href="/" class="left nav-brand">
+      <img src="/images/product_logo.svg" title="InterScan Web Security Hybrid" />
+    </a>
+    <ul class="left hide-on-med-and-down">
+      <li class="{{ activeIfTemplateIs 'home' }}"><a href="/">DASHBOARD</a></li>
+      <li><a href="#">GATEWAYS</a></li>
+      <li class="{{ activeIfTemplateIs 'policies' }}">
+        <a class="dropdown-button"  data-activates="dropdown-policies" href="#">POLICIES 
+          <i class="fa fa-chevron-down right"></i>
+        </a>
+      </li>
+      <li><a href="#">ANALYSIS &amp; REPORTS</a></li>
+      <li><a href="#">ADMINISTRATION</a></li>
+    </ul>
+    <ul class="right nav-icons">
+      <li>
+        <a href="#" style="position:relative;">
+          <i class="mdi-social-notifications left"></i>
+          <span class="right nav-badge">21</span>
+        </a>
+      </li>
+      <li><a href="#"><i class="mdi-social-person left"></i>admin <i class="fa fa-chevron-down right"></i></a></li>
+      <li><a href="#"><i class="mdi-action-settings"></i></a></li>
+      <li><a href="#"><i class="mdi-action-help"></i></a></li>
+    </ul>
+  </div>
+</nav>
+<script type="text/javascript">
+  $(".dropdown-button").dropdown({ hover: true });
+</script>
+</template>

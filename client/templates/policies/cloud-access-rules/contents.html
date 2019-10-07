@@ -1,0 +1,15 @@
+<template name="browseSkippedContents">
+  <ul id='mymdropdown4' class='dropdown-content'>
+    {{#each skippedcontents}}
+      <li><a href="#" class="skippedcontents_drop_down">{{skippedcontent}}</a></li>
+    {{/each}}
+  </ul>
+</template>
+
+<template name="browseBlockedContents">
+  <ul id='mymdropdown6' class='dropdown-content'>
+    {{#each blockedcontents}}
+      <li><a href="#" class="blockedcontents_drop_down">{{blockedcontent}}</a></li>
+    {{/each}}
+  </ul>
+</template>

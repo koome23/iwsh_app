@@ -1,0 +1,71 @@
+<template name="usersinc">
+    {{> tagsinput autocompleteSettings=settings tagField='includedusername' tagsVar='usersincTagsVar' id='usersinc' name='usersinc' placeholder='Type users / groups to include'}}
+</template>
+
+<template name="usersexc">
+    {{> tagsinput autocompleteSettings=settings tagField='excludedusername' tagsVar='usersexcTagsVar' id='usersexc' name='usersexc' placeholder='Type users / groups to exclude'}}
+</template>
+
+<template name="URLCategories">
+    {{> tagsinput autocompleteSettings=settings tagField='category' tagsVar='URLCategoriesAppTagsVar' id='URLCategories' name='URLCategories' placeholder='Type URL categories'}}
+</template>
+
+<template name="trafficApp">
+    {{> tagsinput autocompleteSettings=settings tagField='traffic' tagsVar='trafficAppTagsVar' id='traffic' name='trafficApp' placeholder='Type applications'}}
+</template>
+
+<template name="contentsskipped">
+    {{> tagsinput autocompleteSettings=settings tagField='skippedcontent' tagsVar='contentsskippedTagsVar' id='contentsskipped' name='contentsskipped' placeholder='Type MIME file types to skip'}}
+</template>
+
+<template name="contentsblocked">
+    {{> tagsinput autocompleteSettings=settings tagField='blockedcontent' tagsVar='contentsblockedTagsVar' id='contentsblocked' name='contentsblocked' placeholder='Type MIME file types to block'}}
+</template>
+
+<template name="httpinspection">
+    {{> tagsinput autocompleteSettings=settings tagField='inspection' tagsVar='httpinspectionTagsVar' id='httpinspection' name='httpinspection' placeholder='Type HTTP inspections'}}
+</template>
+
+<template name="includeduserPill">
+    <span class="label label-default">{{includedusername}}</span>
+</template>
+
+<template name="excludeduserPill">
+    <span class="label label-default">{{excludedusername}}</span>
+</template>
+
+<template name="categoryPill">
+    <span class="label label-default">{{category}}</span>
+</template>
+
+<template name="trafficPill">
+    <span class="label label-default">{{traffic}}</span>
+</template>
+
+<template name="skippedcontentPill">
+    <span class="label label-default">{{skippedcontent}}</span>
+</template>
+
+<template name="blockedcontentPill">
+    <span class="label label-default">{{blockedcontent}}</span>
+</template>
+
+<template name="inspectionPill">
+    <span class="label label-default">{{inspection}}</span>
+</template>
+
+<template name="browseIncludedUsers">
+  <ul id='mymdropdown0' class='dropdown-content'>
+    {{#each includedusers}}
+    <li><a href="#" class="includeduser_drop_down">{{includedusername}}</a></li>
+    {{/each}}
+  </ul>
+</template>
+
+<template name="browseExcludedUsers">
+  <ul id='mymdropdown1' class='dropdown-content'>
+    {{#each excludedusers}}
+    <li><a href="#" class="excludeduser_drop_down">{{excludedusername}}</a></li>
+    {{/each}}
+  </ul>
+</template>

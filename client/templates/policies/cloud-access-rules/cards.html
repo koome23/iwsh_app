@@ -1,0 +1,275 @@
+<template name="cloudAccessRulesCard">
+  {{#if displayStyleCards }}
+    {{#each cards}}
+      <div class="col s12 m6 l4">
+        <div class="card small z-depth-2">
+          <a href="#" class="open-modal modal-trigger rule_card_edit" data-id="{{_id}}">
+            <div class="card-header row">
+              <div class="col s2 m2">
+                <div class="switch">
+                  <label>
+                    <input type="checkbox" id="cardSwitch" checked={{generalsettings.policyEnable}}>
+                    <span class="lever" data-id="{{_id}}"></span>
+                  </label>
+                </div>
+              </div>
+              <div class="col s8 m8" data-id="{{_id}}">
+                {{generalsettings.policyName}}
+                <p style="width:275px; font-size: 12px; padding: 0; margin: 0 0 10px" data-id="{{_id}}">
+                  {{generalsettings.policyDescription}}
+                </p>
+              </div>
+              <div class="col s2 m2">
+                <p>
+                  <i class="small fa fa-pencil-square-o" data-toggle="tooltip" data-placement="bottom"
+                     title="General Settings" data-id="{{_id}}"> </i>
+                </p>
+              </div>
+            </div>
+          </a>
+
+          <div class="card-content">
+            <div class="row">
+              <div class="col s2 m2">
+                <i class="fa fa-server" data-toggle="tooltip" data-placement="right"
+                   title="Gateway Locations"></i>
+              </div>
+              <div class="col s10 m10">
+              <span data-toggle="popover" data-content='{{getGatewayLocations locations gatewayLocationsSelected}}'>
+                {{#if gatewayLocationsAll}}
+                  All Gateway Locations
+                {{else}}
+                  <strong>{{gatewaycounts locations}}</strong> Gateway Locations
+                {{/if}}
+              </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s2 m2">
+                <i class="mdi-social-people" data-toggle="tooltip" data-placement="right" title="Users / Groups"></i>
+              </div>
+              <div class="col s10 m10">
+              <span data-toggle="popover" data-content='{{getUserGroups usergroups}}'>
+                {{#if usergroups.userGroupsAll}}
+                  All Users / Groups
+                {{else}}
+                  <strong>{{usergroupcounts usergroups}}</strong> Users / Groups
+                {{/if}}
+              </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s2 m2">
+                <i class="fa fa-exchange" data-toggle="tooltip" data-placement="right" title="Traffic Type"></i>
+              </div>
+              <div class="col s10 m10">
+              <span data-toggle="popover" data-content='{{getTrafficTypes traffictype}}'>
+                {{#if traffictype.trafficTypeAll}}
+                  All Traffic Types
+                {{else}}
+                  <strong>{{traffictypecounts traffictype}}</strong> Traffic Types
+                {{/if}}
+              </span>
+              </div>
+            </div>
+            <div class="row ">
+              <div class="col s2 m2">
+                <i class="material-icons" data-toggle="tooltip" data-placement="right"
+                   title="Content Type">description</i>
+              </div>
+              <div class="col s10 m10">
+              <span data-toggle="popover" data-content='{{getContentTypes contenttype}}'>
+                  <strong>{{contenttypecounts contenttype}}</strong> Content Types
+              </span>
+              </div>
+            </div>
+            <div class="row ">
+              <div class="col s2 m2">
+                <i class="fa fa-calendar" data-toggle="tooltip" data-placement="right" title="Schedule"
+                   style="font-size:18px; margin-top:-2px; line-height:25px"></i>
+              </div>
+              <div class="col s10 m10">
+              <span data-toggle="popover" data-content="{{getSchedules schedules}}">
+                <strong>{{schedulecounts schedules}}</strong> Schedules
+              </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s2 m2">
+                <i class="fa fa-tachometer" data-toggle="tooltip" data-placement="right" title="Cap Limit"></i>
+              </div>
+              <div class="col s10 m10">
+              <span data-toggle="popover" data-content="{{getCapLimit caplimit}}">
+                {{#if caplimit.capLimitNone}}
+                  No Cap Limit
+                {{else}}
+                  Cap Limited
+                {{/if}}
+              </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s2 m2">
+                <i class="mdi-hardware-security" data-toggle="tooltip" data-placement="right"
+                   title="Security Templates"></i>
+              </div>
+              <div class="col s10 m10">
+              <span data-toggle="popover" data-content="{{getSecurityTemplates securitytemplates}}">
+              {{securitytemplates.advancedThreatProtection}} ...
+            </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s2 m2">
+                <i class="fa fa-sliders" data-toggle="tooltip" data-placement="right"
+                   title="Advanced Filter Options"></i>
+              </div>
+              <div class="col s10 m10">
+              <span data-toggle="popover" data-content="{{getAdvancedFilterOptions advancedfilteroptions}}">
+              Advanced Filter Options
+            </span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col s2 m2">
+                <i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Action"></i>
+              </div>
+              <div class="col s10 m10">
+              <span data-toggle="popover" data-content="{{getRuleAction ruleaction}}">
+                {{#if ruleaction.actionSwitchEnable}}
+
+                  {{#if ruleaction.allowWithWarning}}
+                    Allow With Warning
+                  {{/if}}
+
+                  {{#if ruleaction.allowWithPasswordOverride}}
+                    Allow With Password Override
+                  {{/if}}
+
+                  {{#if ruleaction.allowWithRewrite}}
+                    Allow With Rewrite
+                  {{/if}}
+
+                  {{#if ruleaction.allowWithRedirect}}
+                    Allow With Redirect
+                    {{#if ruleaction.permanentlyRedirect}}
+                      - Permanently Redirect
+                    {{/if}}
+                  {{/if}}
+
+                {{else}}
+                  <strong></strong> Block
+                {{/if}}
+
+              </span>
+              </div>
+            </div>
+          </div>
+          <div class="card-action">
+            <a href="#" class="open-modal modal-trigger rule_card_edit" data-id="{{_id}}"><i
+                class="mdi-editor-mode-edit" data-id="{{_id}}"></i>Edit</a>
+            {{#unless global}}
+              <a href="#" data-id="{{_id}}" class="access_rule_card_delete"><i class="mdi-action-delete"
+                                                                               data-id="{{_id}}"></i>Delete</a>
+            {{/unless}}
+            <a href="#" data-id="{{_id}}" class="access_rule_card_duplicate"><i class="material-icons"
+                                                                                data-id="{{_id}}">library_books</i>Duplicate</a>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  {{else}}
+    {{#each cards}}
+      <tr>
+        <td><a href="#" class="open-modal modal-trigger rule_card_edit"
+               data-id="{{_id}}"><span data-toggle="popover"
+                                       data-content='Click name to edit this rule'
+                                       data-id="{{_id}}">{{generalsettings.policyName}}</span></a>
+        </td>
+        <td>{{generalsettings.policyDescription}}</td>
+        <td><span data-toggle="popover" data-content='{{getGatewayLocations locations gatewayLocationsSelected}}'>
+          {{#if gatewayLocationsAll}}
+            All Gateway Locations
+          {{else}}
+            <strong>{{gatewaycounts locations}}</strong> Gateway Locations
+          {{/if}}
+        </span></td>
+        <td> <span data-toggle="popover" data-content='{{getUserGroups usergroups}}'>
+          {{#if usergroups.userGroupsAll}}
+            All Users / Groups
+          {{else}}
+            <strong>{{usergroupcounts usergroups}}</strong> Users / Groups
+          {{/if}}
+        </span></td>
+        <td><span data-toggle="popover" data-content='{{getTrafficTypes traffictype}}'>
+          {{#if traffictype.trafficTypeAll}}
+            All Traffic Types
+          {{else}}
+            <strong>{{traffictypecounts traffictype}}</strong> Traffic Types
+          {{/if}}
+        </span></td>
+        <td><span data-toggle="popover" data-content='{{getContentTypes contenttype}}'>
+            <strong>{{contenttypecounts contenttype}}</strong> Content Types
+        </span></td>
+        <td><span data-toggle="popover" data-content="{{getSchedules schedules}}">
+                <strong>{{schedulecounts schedules}}</strong> Schedule
+              </span></td>
+        <td><span data-toggle="popover" data-content="{{getCapLimit caplimit}}">
+          {{#if caplimit.capLimitNone}}
+            No Cap Limit
+          {{else}}
+            Cap Limited
+          {{/if}}
+        </span></td>
+        <td><span data-toggle="popover" data-content="{{getAdvancedFilterOptions advancedfilteroptions}}">
+              Advanced Filter Options
+            </span>
+        </td>
+        <td><span data-toggle="popover" data-content="{{getRuleAction ruleaction}}">
+          {{#if ruleaction.actionSwitchEnable}}
+
+            {{#if ruleaction.allowWithWarning}}
+              Allow With Warning
+            {{/if}}
+
+            {{#if ruleaction.allowWithPasswordOverride}}
+              Allow With Password Override
+            {{/if}}
+
+            {{#if ruleaction.allowWithRewrite}}
+              Allow With Rewrite
+            {{/if}}
+
+            {{#if ruleaction.allowWithRedirect}}
+              Allow With Redirect
+              {{#if ruleaction.permanentlyRedirect}}
+                - Permanently Redirect
+              {{/if}}
+            {{/if}}
+
+          {{else}}
+            <strong></strong> Block
+          {{/if}}
+
+        </span></td>
+        <td><a href="#" class="open-modal modal-trigger rule_card_edit" data-id="{{_id}}"><span data-toggle="popover"
+                                                                                                data-content="Edit"><i
+            class="mdi-editor-mode-edit" data-id="{{_id}}"></i></span></a></td>
+        <td>
+          {{#unless global}}
+            <a href="#" data-id="{{_id}}" class="access_rule_card_delete"><span data-toggle="popover"
+                                                                                data-content="Delete"><i
+                class="mdi-action-delete"
+                data-id="{{_id}}"></i></span></a>
+          {{/unless}}
+        </td>
+        <td style="line-height: 0.6;"><a href="#" data-id="{{_id}}" class="access_rule_card_duplicate"><span data-toggle="popover"
+                                                                                                             data-content="Duplicate"><i
+            class="tiny material-icons"
+            data-id="{{_id}}">library_books</i></span></a>
+        </td>
+      </tr>
+    {{/each}}
+  {{/if}}
+
+</template>

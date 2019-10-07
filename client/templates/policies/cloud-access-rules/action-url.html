@@ -1,0 +1,44 @@
+<template name="actionModal">
+  <div class="">
+    <form id="saveActionForm">
+      <div id="tmActionFrom">
+        <label for="actionFrom">From:</label>
+        <input type="text" name="actionFrom" id="actionFrom" style="width:400px">
+      </div>
+      <div class="tmActionSaveIcon">
+        <a href="#" data-toggle="tooltip" id="saveAction" data-placement="right"
+           title="Add this URL to redirect" tabindex="-1"><i class="material-icons" id="saveActionIcon">done</i></a>
+        <a href="#" data-toggle="tooltip" id="cancelAction" data-placement="right"
+           title="Cancel" tabindex="-1"><i class="material-icons" id="cancelActionIcon">clear</i></a>
+      </div>
+      <div style="clear: both"></div>
+      <div id="tmActionTo">
+        <label for="actionTo">To:</label>
+        <input type="text" name="actionTo" id="actionTo" style="width:400px">
+      </div>
+    </form>
+  </div>
+</template>
+
+<template name="testDropdownTrigger2">
+  <button style="margin-left:-5px; font-size:12px"> Add URL to redirect</button>
+</template>
+
+<template name="actionUrl">
+  {{ > dropdownTrigger name="actionModal" template="testDropdownTrigger2" }}
+  {{ > dropdown name="actionModal" top="-10px" left="166px" class="action-modal"}}
+  <table id="ActionTable" class="centered bordered">
+    <tr class="TableHead">
+      <td>From</td>
+      <td>To</td>
+    </tr>
+    {{#each actionsArray}}
+      {{#each actions}}
+        <tr class="TableData">
+          <td value="{{from}}">{{from}} </td>
+          <td value="{{to}}">{{to}} </td>
+        </tr>
+      {{/each}}
+    {{/each}}
+  </table>
+</template>

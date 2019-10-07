@@ -1,0 +1,61 @@
+<template name="cloudAccessRules">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <div class="CloudAccessRulesBanner">
+    <div class="col s12">
+      <div class="row">
+        <div class="col s5" style="font-size:12px; padding-top:7px">
+          <i class="fa fa-home"></i> / Policies / <strong>Cloud Access Rules</strong>
+        </div>
+        <div class="col s5" style="font-size:18px; padding-top:3px">
+          <strong> Cloud Access Rules </strong>
+        </div>
+        <div class="col s2" style="padding-left:60px; padding-bottom:8px">
+          <a class="open-modal modal-trigger waves-effect waves-light btn"> Add New Rule</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col s12" style="text-align: center; margin: 15px 0;">
+    <a href="#" id="cardView">Card View</a> &lt;&gt; <a href="#" id="tableView">Table View</a>
+  </div>
+  {{#if displayStyleCards }}
+    <div class="row" id="sortTitle">
+      <div class=" center col s12">
+        Sorted by Priority - Highest from Left to Right, Top to Bottom
+      </div>
+    </div>
+    <div class="row cards-container">
+      {{> cloudAccessRulesCard }}
+    </div>
+  {{else}}
+    <div class="col s12">
+      <table class="striped">
+        <thead>
+        <tr>
+          <th data-field="name">Name</th>
+          <th data-field="description">Description</th>
+          <th data-field="gateways">Gateways</th>
+          <th data-field="usergroups">Users/Groups</th>
+          <th data-field="traffic">Traffic Types</th>
+          <th data-field="content">Content Types</th>
+          <th data-field="schedules">Schedules</th>
+          <th data-field="caplimit">Cap Limits</th>
+          <th data-field="options">Advanced Filter Options</th>
+          <th data-field="action">Action</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {{> cloudAccessRulesCard }}
+        </tbody>
+      </table>
+    </div>
+  {{/if}}
+</template>
+
+
+
+

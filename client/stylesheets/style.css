@@ -1,0 +1,154 @@
+#location-tree {
+    padding-top: 1px;
+}
+
+.add-location-drop-down {
+  height: 8.2rem;
+  width: 99%;
+  border: 1px solid #DDDDDD;
+  box-shadow: 1px 1px 0.5px #888;
+  position: static !important;
+}
+
+.addLocationMenu {
+  margin: 10px;
+}
+
+#location-tree button.dropdown__trigger {
+  margin: 0;
+  /*float: right;*/
+  height: 20px;
+}
+
+#tmLocationName {
+  float: left;
+  width: 260px;
+}
+
+.tmLocationSaveIcon {
+  text-align: right;
+}
+
+.tmLocationSaveIcon i.mdi-action-done:before, .tmLocationSaveIcon i.mdi-navigation-arrow-back:before {
+  border: 1px solid;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
+
+.tmLocationSaveIcon a:hover, .tmLocationSaveIcon a:visited, .tmLocationSaveIcon a:active {
+  text-decoration: none;
+}
+
+#tmAddRemoveLoc {
+    float: right;
+    padding-right: 22px;
+}
+
+#tmAddRemoveLoc a {
+    color: #000;
+}
+
+.schedule-modal {
+    background-color: white;
+    border: 1px solid #DDDDDD;
+    z-index: 4;
+    overflow: auto;
+    width: 450px;
+    padding: 10px;
+    box-shadow: 1px 1px 0.5px #888;
+}
+
+button.dropdown__trigger {
+    margin: 11px;
+}
+
+#tmScheduleName {
+    float: left;
+    width: 260px;
+}
+
+#tmScheduleDesc {
+    width: 260px;
+}
+
+.tmScheduleSaveIcon {
+    margin-left: 370px;
+}
+
+.tmScheduleSaveIcon i.mdi-action-done:before, .tmScheduleSaveIcon i.mdi-navigation-arrow-back:before {
+    border: 1px solid;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.tmScheduleSaveIcon a:hover, .tmScheduleSaveIcon a:visited, .tmScheduleSaveIcon a:active {
+    text-decoration: none;
+}
+
+.action-modal {
+    background-color: white;
+    border: 1px solid #DDDDDD;
+    z-index: 4;
+    overflow: auto;
+    width: 450px;
+    padding: 10px;
+    box-shadow: 1px 1px 0.5px #888;
+}
+
+#tmActionFrom {
+    float: left;
+    width: 260px;
+}
+
+#tmActionTo {
+    width: 260px;
+}
+
+.tmActionSaveIcon {
+    margin-left: 370px;
+}
+
+.tmActionSaveIcon i.mdi-action-done:before, .tmActionSaveIcon i.mdi-navigation-arrow-back:before {
+    border: 1px solid;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.tmActionSaveIcon a:hover, .tmActionSaveIcon a:visited, .tmActionSaveIcon a:active {
+    text-decoration: none;
+}
+
+#addGatewayBox {
+  width: 96%;
+  margin: 0 auto;
+  float: none;
+}
+
+a#location_delete {
+    margin-left: 2px;
+    padding: 0;
+}
+
+a#location_add {
+    margin-left: 5px;
+    padding: 0;
+}
+
+.jqtree-select-row {
+    border-bottom: 1px solid #DDD;
+}
+
+.jqtree-tree .jqtree-title {
+    color: #555;
+    font-size: 11px;
+}
+
+.addGatewayNote {
+    padding: 10px 10px 5px 21px;
+    border-bottom: 1px solid #DDDDDD;
+    text-align: right;
+    color: #4A90E2;
+}

@@ -1,0 +1,794 @@
+<template name="editModal">
+  <div id="new-edit-modal" class="modal bottom-sheet  modal-fixed-footer">
+    <div class="modal-content scrollspy-container">
+      <div class="scrollspy-table">
+        <ul class="section table-of-contents">
+          <li><a href="#policy-general-settings">
+            <i class="fa fa-pencil-square-o" data-toggle="tooltip" data-placement="right"
+               title="General Settings"> </i>
+          </a></li>
+          <li><a href="#policy-locations">
+            <i class="fa fa-server" data-toggle="tooltip" data-placement="right" title="Gateway Locations"></i>
+          </a></li>
+          <li><a href="#policy-users-groups">
+            <i class="mdi-social-people" data-toggle="tooltip" data-placement="right" title="Users / Groups"></i>
+          </a></li>
+          <li><a href="#policy-traffic-type">
+            <i class="fa fa-exchange" data-toggle="tooltip" data-placement="right" title="Traffic Type"></i>
+          </a></li>
+          <li><a href="#policy-content-type">
+            <i class="material-icons" data-toggle="tooltip" data-placement="right" title="Content Type"
+               style="font-size:22px; margin-top:-3px">description</i>
+          </a></li>
+          <li><a href="#policy-schedule">
+            <i class="fa fa-calendar" data-toggle="tooltip" data-placement="right" title="Schedule"></i>
+          </a></li>
+          <li><a href="#policy-cap-limit">
+            <i class="fa fa-tachometer" data-toggle="tooltip" data-placement="right" title="Cap Limit"></i>
+          </a></li>
+          <li><a href="#policy-security-templates">
+            <i class="mdi-hardware-security" data-toggle="tooltip" data-placement="right"
+               title="Security Templates"></i>
+          </a></li>
+          <li><a href="#policy-options">
+            <i class="fa fa-sliders" data-toggle="tooltip" data-placement="right" title="Advanced Filter Options"></i>
+          </a></li>
+          <li><a href="#policy-action">
+            <i class="fa fa-check-circle" data-toggle="tooltip" data-placement="right" title="Action"></i>
+          </a></li>
+        </ul>
+      </div>
+      <form id="saveNewRuleForm">
+        <div class="modal-content-sections">
+          <section class="scrollspy" id="policy-general-settings">
+            <div class="row section-title">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s12">
+                    General Settings
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row section-form">
+              <div class="col s12">
+                <div class="row">
+                  <div class="input-field col s8">
+                    <input id="policyName" type="text" name="policyName" value="{{generalsettings.policyName}}"
+                           placeholder="Policy name">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="input-field col s8">
+                    <input id="policy_description" type="text" name="policy_description"
+                           value="{{generalsettings.policyDescription}}" placeholder="Description (optional)">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s8">
+                    <div class="switch">
+                      <label>
+                        Disable
+                        <input type="checkbox" id="on-off" name="generalSettingsSwitch"
+                               checked={{generalsettings.policyEnable}}>
+                        <span class="lever" id="on-offLever"></span>
+                        Enable
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="scrollspy" id="policy-locations">
+            <div class="row section-title">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s12">
+                    Gateway Locations
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row section-form">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s1">
+                    <input class="with-gap" name="group2" type="radio" id="test3" checked={{gatewayLocationsAll}}>
+                    <label for="test3">All</label>
+                  </div>
+                  <div class="col s9">
+                    <input class="with-gap" name="group2" type="radio" id="test4" checked={{gatewayLocationsSelected}}>
+                    <label for="test4">Selected gateway locations</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="hide col s8" id="show-hide2">
+                    <div class="multiselect">
+                      <div class="row row-nospaces">
+                        <div class="col s12 multiselect-list-container">
+                          <div class="multiselect-list-title">
+                            <span>Gateway Locations</span>
+
+                            <div class="right col s1">
+                              <a class=" small waves-effect waves-light btn btn-browse dropdown-button"
+                                 data-toggle="tooltip" data-placement="right"
+                                 data-activates='gateway_dropdown' title="Browse All">
+                                <i class="mdi-communication-clear-all"></i> </a>
+                              {{> browseGateways }}
+                            </div>
+                          </div>
+                          <div style="clear:both"></div>
+                          {{> locations }}
+                          <div class="col s11" id="addGatewayBox">
+                            {{> addgatewaytemplate }}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="scrollspy" id="policy-users-groups">
+            <div class="row section-title">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s12">
+                    Users / Groups
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row section-form">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s1">
+                    <input type="radio" class="with-gap" name="group1" id="test1" checked={{usergroups.userGroupsAll}}>
+                    <label for="test1">All</label>
+                  </div>
+                  <div class="col s9">
+                    <input type="radio" class="with-gap" name="group1" id="test2"
+                           checked={{usergroups.userGroupsSelected}}>
+                    <label for="test2">Selected users / groups</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="hide col s8" id="show-hide1">
+                    <div class="multiselect">
+                      <div class="row row-nospaces">
+                        <div class="col s12 multiselect-list-container" id="userGroupsIncluded">
+                          <div class="multiselect-list-title">Included Users / Groups
+                            <div class="right col s1">
+                              <a class=" small waves-effect waves-light btn btn-browse dropdown-button"
+                                 data-toggle="tooltip" data-placement="top"
+                                 data-activates='mymdropdown0' title="Browse All">
+                                <i class="mdi-communication-clear-all"></i> </a>
+                              {{> browseIncludedUsers }}
+                            </div>
+                          </div>
+                          {{> usersinc }}
+                        </div>
+                      </div>
+                      <div class="row row-nospaces">
+                        <div class="col s12 multiselect-list-container">
+                          <div class="multiselect-list-title">Excluded Users / Groups
+
+                            <div class="right col s1">
+                              <a class=" small waves-effect waves-light btn btn-browse dropdown-button"
+                                 data-toggle="tooltip" data-placement="top"
+                                 data-activates='mymdropdown1'
+                                 title="Browse All ">
+                                <i class="mdi-communication-clear-all"></i> </a>
+                              {{> browseExcludedUsers }}
+                            </div>
+                          </div>
+                          {{> usersexc }}
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="scrollspy" id="policy-traffic-type">
+            <div class="row section-title">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s12">
+                    Traffic Type
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row section-form">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s1">
+                    <input class="with-gap" name="group3" type="radio" id="test5"
+                           checked={{traffictype.trafficTypeAll}}>
+                    <label for="test5">All</label>
+                  </div>
+                  <div class="col s9">
+                    <input class="with-gap" name="group3" type="radio" id="test6"
+                           checked={{traffictype.trafficTypeSelected}}>
+                    <label for="test6">Selected traffic type</label>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="hide col s8" id="show-hide3">
+                    <div class="multiselect">
+                      <div class="row">
+                        <div class="multiselect">
+                          <div class="row row-nospaces">
+                            <div class="col s12 multiselect-list-container">
+                              <div class="multiselect-list-title"> URL Categories
+
+                                <div class="right col s1">
+                                  <a class=" small waves-effect waves-light btn btn-browse dropdown-button"
+                                     data-toggle="tooltip" data-placement="top"
+                                     data-activates='mymdropdown2' title="Browse All">
+                                    <i class="mdi-communication-clear-all"></i> </a>
+                                  {{> browseCategories }}
+                                </div>
+                              </div>
+                              {{> URLCategories }}
+
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                    <div class="multiselect">
+                      <div class="row">
+                        <div class="multiselect">
+                          <div class="row row-nospaces">
+                            <div class="col s12 multiselect-list-container">
+                              <div class="multiselect-list-title">Applications
+
+                                <div class="right col s1">
+                                  <a class=" small waves-effect waves-light btn btn-browse dropdown-button"
+                                     data-toggle="tooltip" data-placement="top"
+                                     data-activates='mymdropdown3' title="Browse All">
+                                    <i class="mdi-communication-clear-all"></i> </a>
+                                  {{> browseTraffics }}
+                                </div>
+                              </div>
+                              {{> trafficApp }}
+
+                            </div>
+                          </div>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="scrollspy" id="policy-content-type">
+            <div class="row section-title">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s12">
+                    Content Type
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row section-form">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s8">
+                    <div class="row">
+                      <div class="multiselect">
+                        <div class="row row-nospaces">
+                          <ul class="collapsible" data-collapsible="expandable">
+                            <li>
+                              <div class="collapsible-header"><i class="fa fa-file-text-o"></i> MIME File Type
+                              </div>
+                              <div class="collapsible-body">
+                                <div class="col s12">
+                                  <div class="row">
+                                    <div class="col s11">
+                                      <div class="multiselect">
+                                        <div class="row row-nospaces">
+                                          <div class="col s12 multiselect-list-container"
+                                               style="margin-left:10px; width:588px">
+                                            <div class="multiselect-list-title">Skipped Scan MIME File Type
+                                              <div class="right col s1">
+                                                <a class=" small waves-effect waves-light btn btn-browse dropdown-button"
+                                                   data-toggle="tooltip" data-placement="top"
+                                                   data-activates='mymdropdown4' title="Browse All">
+                                                  <i class="mdi-communication-clear-all"></i> </a>
+                                                {{> browseSkippedContents }}
+                                              </div>
+                                            </div>
+                                            {{> contentsskipped }}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="col s12">
+                                  <div class="row">
+                                    <div class="col s11">
+                                      <div class="multiselect">
+                                        <div class="row row-nospaces">
+                                          <div class="col s12 multiselect-list-container"
+                                               style="margin-left:10px; width:588px">
+                                            <div class="multiselect-list-title">Blocked MIME File Type
+                                              <div class="right col s1">
+                                                <a class=" small waves-effect waves-light btn btn-browse dropdown-button"
+                                                   data-toggle="tooltip" data-placement="top"
+                                                   data-activates='mymdropdown6' title="Browse All">
+                                                  <i class="mdi-communication-clear-all"></i> </a>
+                                                {{> browseBlockedContents }}
+                                              </div>
+                                            </div>
+                                            {{> contentsblocked }}
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="collapsible-header"><i class="fa fa-file-word-o"></i> File Name
+                                <div class="collapsible-body">
+                                </div>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="collapsible-header"><i class="fa fa-file-code-o"></i> True File Type
+                                <div class="collapsible-body">
+                                </div>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="collapsible-header"><i class="fa fa-file-picture-o"></i> File Extension
+                                <div class="collapsible-body">
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="scrollspy" id="policy-schedule">
+            <div class="row section-title">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s12">
+                    Schedule
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row section-form">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s4 schedule-template">
+                    {{> schedulesTemplate }}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="scrollspy" id="policy-cap-limit">
+            <div class="row section-title">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s12">
+                    Cap Limit
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row section-form">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s1">
+                    <input class="with-gap" name="group5" type="radio" id="test11" checked={{caplimit.capLimitNone}}>
+                    <label for="test11">None</label>
+                  </div>
+                  <div class="col s9">
+                    <input class="with-gap" name="group5" type="radio" id="test12"
+                           checked={{caplimit.capLimitLimited}}>
+                    <label for="test12">Limited</label>
+                  </div>
+                </div>
+              </div>
+              <div id="show-hide6" class="hide col s12">
+                <div class="row">
+                  <div class="col s12">
+                    <p>Specify the time quota</p>
+                  </div>
+                </div>
+                <div class="largespace row">
+                  <div class="col s2">
+                    Limit to
+                  </div>
+                  <div id="LimitInputBox" class="input-field col s1">
+                    <input type="text" value="{{caplimit.timeQuotaInput1}}" id="timeQuotaInput1">
+                  </div>
+                  <div id="LimitDropdownBox" class="input-field col s2">
+                    <select class="browser-default" id="timeQuotaInput2">
+                      <option value="Seconds"  {{caplimit.timeQuoteInput20Selected}}>Seconds</option>
+                      <option value="Minutes" {{caplimit.timeQuoteInput21Selected}}>Minutes</option>
+                      <option value="Hours" {{caplimit.timeQuoteInput22Selected}}>Hours</option>
+                    </select>
+                  </div>
+                  <div id="LimitDropdownBox2" class="input-field col s2">
+                    <select class="browser-default" id="timeQuotaInput3">
+                      <option value="Per day" {{caplimit.timeQuoteInput30Selected}}>Per day</option>
+                      <option value="Per week" {{caplimit.timeQuoteInput31Selected}}>Per week</option>
+                      <option value="Per month" {{caplimit.timeQuoteInput32Selected}}>Per month</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col s12">
+                    <p>Specify access quota</p>
+                  </div>
+                </div>
+                <div class="largespace row">
+                  <div class="col s2">
+                    Limit to
+                  </div>
+
+                  <div id="LimitInputBox2" class="input-field col s1">
+                    <input type="text" value="{{caplimit.accessQuotaUpstreamInput1}}" id='accessQuotaUpstreamInput1'>
+                  </div>
+
+                  <div id="LimitDropdownBox3" class="input-field col s2">
+                    <select class="LimitOption browser-default" id="accessQuotaUpstreamInput2">
+                      <option value="KB" {{caplimit.accessQuotaUpstreamInput20Selected}}>KB</option>
+                      <option value="MB" {{caplimit.accessQuotaUpstreamInput21Selected}}>MB</option>
+                      <option value="GB" {{caplimit.accessQuotaUpstreamInput22Selected}}>GB</option>
+                    </select>
+                  </div>
+
+                  <div id="LimitDropdownBox4" class="input-field col s2">
+                    <select class="browser-default" id="accessQuotaUpstreamInput3">
+                      <option value="Per day" {{caplimit.accessQuotaUpstreamInput30Selected}}>Per day</option>
+                      <option value="Per week" {{caplimit.accessQuotaUpstreamInput31Selected}}>Per week</option>
+                      <option value="Per month" {{caplimit.accessQuotaUpstreamInput32Selected}}>Per month</option>
+                    </select>
+                  </div>
+
+                  <div class="col s2" style="margin: 3px 0px 0px -5px;">
+                    Upstream
+                  </div>
+
+                </div>
+
+
+                <div class="row">
+                  <div id="LimitInputBox3" class="input-field col s1">
+                    <input type="text" value="{{caplimit.accessQuotaDownstreamInput1}}"
+                           id='accessQuotaDownstreamInput1'>
+                  </div>
+
+                  <div id="LimitDropdownBox5" class="input-field col s2">
+                    <select class="LimitOption browser-default" id="accessQuotaDownstreamInput2">
+                      <option value="KB" {{caplimit.accessQuotaDownstreamInput20Selected}}>KB</option>
+                      <option value="MB" {{caplimit.accessQuotaDownstreamInput21Selected}}>MB</option>
+                      <option value="GB" {{caplimit.accessQuotaDownstreamInput22Selected}}>GB</option>
+                    </select>
+                  </div>
+
+                  <div id="LimitDropdownBox6" class="input-field col s2">
+                    <select class="browser-default" id="accessQuotaDownstreamInput3">
+                      <option value="Per day" {{caplimit.accessQuotaDownstreamInput30Selected}}>Per day</option>
+                      <option value="Per week" {{caplimit.accessQuotaDownstreamInput31Selected}}>Per week</option>
+                      <option value="Per month" {{caplimit.accessQuotaDownstreamInput32Selected}}>Per month</option>
+                    </select>
+                  </div>
+
+                  <div class="col s2" style="margin: 19px 0px 0px -6px;">
+                    Downstream
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+          </section>
+          <section class="scrollspy" id="policy-security-templates">
+            <div class="row section-title">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s12">
+                    Security Templates
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row section-form">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s12">
+                    <p style="padding-top:7px">Advanced Threat Protection</p>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col s12" style="padding-bottom:15px;">
+                <div class="row">
+                  <div class="input-field col s4">
+                    <select class="browser-default" id="advancedThreatProtectionTemplate">
+                      <option value=" Default Security Template ">Default Security Template</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s12">
+                    <p>Data Leakage Prevention</p>
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="col s12">
+                <div class="row">
+                  <div class="input-field col s4">
+                    <select class="browser-default" id="dataLeakagePreventionTemplate">
+                      <option value=" Default Security Template ">Default Security Template</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="scrollspy" id="policy-options">
+            <div class="row section-title">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s12">
+                    Advanced Filter Options
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row section-form">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s8">
+                    <div class="row">
+                      <div class="multiselect">
+                        <div class="row row-nospaces">
+
+                          <ul class="collapsible" data-collapsible="expandable">
+                            <li>
+                              <div class="collapsible-header active"><i
+                                  class="material-icons">settings_input_antenna</i>Network Connections
+                              </div>
+                              <div class="collapsible-body">
+                                <p>
+                                  Enforce rule to any of the selected network connections.
+                                </p>
+
+                                <div class="VPNBox">
+                                  <p>
+                                    <input type="checkbox" class="filled-in" id="VPNBox"
+                                           checked={{advancedfilteroptions.VPN}}>
+                                    <label for="VPNBox">VPN</label>
+                                  </p>
+                                </div>
+                                <div class="cellularBox">
+                                  <p>
+                                    <input type="checkbox" class="filled-in" id="cellularBox"
+                                           checked={{advancedfilteroptions.cellular}}>
+                                    <label for="cellularBox">Cellular</label>
+                                  </p>
+                                </div>
+                                <div class="WiFiBox">
+                                  <p>
+                                    <input type="checkbox" class="filled-in" id="WiFiBox"
+                                           checked={{advancedfilteroptions.WiFi}}>
+                                    <label for="WiFiBox">Wi-Fi</label>
+                                  </p>
+                                </div>
+                                <div id="SSID-Input" class="hide">
+                                  <div class="row">
+                                    <input type="checkbox" class="filled-in" id="Options-filled-in-box4">
+                                    <label for="Options-filled-in-box4">Exclude these Wi-Fi SSID</label>
+                                  </div>
+
+                                  <div class="input-field col s6">
+                                    <input id="Enter_SSID" type="text" style="margin-top:0px">
+                                    <label for="Enter_SSID"><strong> </strong> Enter SSID </label>
+
+                                    <p id="OptionsDescription">
+                                      Do not enforce rule for any of the following Wi-Fi networks (SSIDs).
+                                    </p>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="collapsible-header"><i class="material-icons">phonelink_ring</i>Devices
+                              </div>
+                              <div class="collapsible-body">
+                                <p>
+                                  Enforce rules for any of the selected devices.
+                                </p>
+
+                                <div class="desktopLaptopChromebookBox">
+                                  <p>
+                                    <input type="checkbox" class="filled-in" id="desktopLaptopChromebookBox"
+                                           checked={{advancedfilteroptions.desktopLaptopChromebook}}>
+                                    <label for="desktopLaptopChromebookBox">Desktop / Laptop / Chromebook</label>
+                                  </p>
+                                </div>
+                                <div class="mobileBox">
+                                  <p>
+                                    <input type="checkbox" class="filled-in" id="mobileBox"
+                                           checked={{advancedfilteroptions.mobile}}>
+                                    <label for="mobileBox">Mobile</label>
+                                  </p>
+                                </div>
+                                <div class="wearablesBox">
+                                  <p>
+                                    <input type="checkbox" class="filled-in" id="wearablesBox"
+                                           checked={{advancedfilteroptions.wearables}}>
+                                    <label for="wearablesBox">Wearables</label>
+                                  </p>
+                                </div>
+                              </div>
+                            </li>
+                            <li>
+                              <div class="collapsible-header"><i class="material-icons">http</i>HTTP Inspection Filters
+                              </div>
+                              <div class="collapsible-body">
+                                <div class="col s12">
+                                  <div class="row">
+                                    <div class="col s11">
+                                      <div class="multiselect">
+                                        <div class="row row-nospaces">
+                                          <div class="col s12 multiselect-list-container"
+                                               style="margin-left:10px; width:588px">
+                                            <div class="multiselect-list-title">HTTP Inspection
+
+                                              <div class="right col s1">
+                                                <a class=" small waves-effect waves-light btn btn-browse dropdown-button"
+                                                   data-toggle="tooltip" data-placement="top"
+                                                   data-activates='mymdropdown5' title="Browse All">
+                                                  <i class="mdi-communication-clear-all"></i> </a>
+                                                {{> browseInspections }}
+                                              </div>
+                                            </div>
+                                            {{> httpinspection }}
+                                          </div>
+                                        </div>
+                                      </div>
+
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="scrollspy" id="policy-action">
+            <div class="row section-title">
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s12">
+                    Action
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row section-form" style="height:1000px">
+              <div class="col s12">
+                <div class="row">
+                  <div id="BlockAllowLever" class="col s4">
+                    <div class="switch">
+                      <label>
+                        Block
+                        <input type="checkbox" id="actionCheckSwitch" checked={{ruleaction.actionSwitchEnable}}>
+                        <span class="lever"></span>
+                        Allow
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="hide col s12" id="show-hide4">
+                <div class="row">
+                  <div class="col s8">
+                    <div class="actionCheckboxes">
+                      <p style="margin-bottom:0px">
+                        <input class="with-gap" name="group4" type="radio" id="allowWithWarningButton"
+                               checked={{ruleaction.allowWithWarning}}>
+                        <label for="allowWithWarningButton">Allow with Warning</label>
+                      </p>
+
+                      <p style="margin-bottom:0px">
+                        <input class="with-gap" name="group4" type="radio" id="allowWithPasswordOverrideButton"
+                               checked={{ruleaction.allowWithPasswordOverride}}>
+                        <label for="allowWithPasswordOverrideButton">Allow with Password Override</label>
+                      </p>
+
+                      <p style="margin-bottom:0px">
+                        <input class="with-gap" name="group4" type="radio" id="allowWithRewriteButton"
+                               checked={{ruleaction.allowWithRewrite}}>
+                        <label for="allowWithRewriteButton">Allow with Rewrite</label>
+                      </p>
+
+                      <p style="margin-bottom:0px">
+                        <input class="with-gap" name="group4" type="radio" id="allowWithRedirectButton"
+                               checked={{ruleaction.allowWithRedirect}}>
+                        <label for="allowWithRedirectButton">Allow with Redirect</label>
+                      </p>
+
+                      <p class="indentCheckbox">
+                        <input type="checkbox" class="filled-in" id="permRedirect"
+                               checked={{ruleaction.permanentlyRedirect}}>
+                        <label for="permRedirect">Permanently redirect</label>
+                      </p>
+
+                      <div class="hide" style="padding-left:25px" id="show-hide5">
+                        {{> actionUrl }}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="col s12">
+                <div class="row">
+                  <div class="col s8">
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="modal-header z-depth-1">
+          <section>
+            <i class="left sprites icon001" style="margin: 5px 28px 0 0;"></i>
+
+            <h2 class="left">
+              Add New Rule
+            </h2>
+
+            <div class="right">
+              <a class="waves-effect waves-light btn" id="saveFormButton">Save</a>
+              <a class="btn-close waves-effect waves-light modal-action modal-close">&times;</a>
+            </div>
+          </section>
+        </div>
+      </form>
+    </div>
+  </div>
+</template>

@@ -1,0 +1,45 @@
+<template name="locations">
+  <div id="location-tree"></div>
+</template>
+
+<template name="addLocationDropDown">
+  <div class="addLocationMenu">
+    <form id="addLocationForm">
+      <div id="tmLocationName">
+        <label for="locationName">Add IP address or subnet</label>
+        <input type="text" name="locationName" id="locationName">
+      </div>
+      <div class="tmLocationSaveIcon">
+        <a href="#" data-toggle="tooltip" id="saveLocation" data-placement="right"
+           title="Save this location"><i class="small mdi-action-done"></i></a>
+        <a href="#" data-toggle="tooltip" id="cancelLocation" data-placement="right"
+           title="Cancel"><i class="small mdi-navigation-arrow-back"></i></a>
+      </div>
+    </form>
+  </div>
+</template>
+
+<template name="locationDropDownButton">
+  {{ > dropdownTrigger name="addLocationDropDown" template="addLocationDropDownTrigger" }}
+  {{ > dropdown name="addLocationDropDown" top="-10" left="0" classes="add-location-drop-down"}}
+</template>
+
+<template name="addLocationDropDownTrigger">
+  <button class="">&nbsp;+&nbsp;</button>
+</template>
+
+<template name="addgatewaytemplate">
+  {{> inputAutocomplete settings=settings id="tm_gateway" class="input-xlarge" placeholder="Add gateway" }}
+</template>
+
+<template name="gatewayPill">
+  <span class="label">{{name}}</span>
+</template>
+
+<template name="browseGateways">
+  <ul id='gateway_dropdown' class='dropdown-content'>
+    {{#each gateways}}
+      <li><a href="#" class="gateway_drop_down">{{name}}</a></li>
+    {{/each}}
+  </ul>
+</template>
